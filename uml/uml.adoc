@@ -1,0 +1,16 @@
+== Plant UML
+
+.PlantUML Diyagram
+[plantuml, diagram, png]     
+....
+class World
+class Animal
+class Human
+class Dog
+class Cat
+
+World <|-- Animal
+World <|-- Human
+Animal <|-- Dog
+Animal <|-- Cat
+....
