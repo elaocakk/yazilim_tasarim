@@ -1,0 +1,194 @@
+= Odev-1
+:toc:
+:data_uri:
+
+== Başlık Örneği
+
+== Yazılım Tasarım Kalıpları 
+
+=== 1. Hafta Uygulaması
+
+== Listeler Örneği
+
+.Liste 1: Linux dosya sıkıştırma ve açma komutları
+* tar -xvf arsiv.tar : arsiv.tar isimli arşiv dosyasını bulunulan dizine açar.
+* unzip arsiv.zip -d dizin : arsiv.zip isimli arşiv dosyasını belirtilen dizin isimli dizine açar. 
+* gunzip dosya.gz : gzip ile sıkıştırılmış dosya.gz arşiv dosyasını dosya olarak açar.
+* gzip -9 dosya : Dosyayı sıkıştırır ve dosya.gz haline getirir.
+
+.Liste 2: Linux dosya sistemi
+. /bin
+. /dev
+. /etc
+. /home`
+. /lib
+. /mnt
+. /proc
+. /root
+. /sbin
+. /tmp
+. /usr
+. /var
+
+
+== Uyarılar Örneği
+
+NOTE: Ders ile ilgili notlar Yapbenzet'te bulunmaktadır. 
+
+TIP: Dokümanı oluşturmadan önce kullanım kılavuzuna göz atınız.
+
+WARNING: Kodlar Ubuntu 16.04 üzerinde Anaconda kullanılarak çalıştırılmıştır.
+
+== Linkler Örnekleri
+
+* External
+
+http://yapbenzet.kocaeli.edu.tr/ - Yapay Zeka ve Benzetim Sistemleri Ar-Ge Lab
+
+http://yapbenzet.kocaeli.edu.tr/[Yapay Zeka ve Benzetim Sistemleri Ar-Ge Lab]
+
+https://github.com/yapbenzet[Yapay Zeka ve Benzetim Sistemleri Ar-Ge @ *GitHub*]
+
+* With spaces and special characters
+
+link:++http://yapbenzet.kocaeli.edu.tr/wiki/doku.php?id=[160201012]++[URL with special characters] 
+
+link:http://yapbenzet.kocaeli.edu.tr/wiki/doku.php?id=160201012[URL with special characters] 
+
+* Relative
+
+link:robotik_sistem.pdf[Robotik sistemlere giris-03]
+
+* Link with attributes
+
+https://github.com/[Github, role=external, window=_blank]
+
+https://www.youtube.com/?hl=tr&gl=TR[Youtube^]
+
+https://www.google.com/["Google,Yahoo^",role=teal]
+
+* Inline anchors
+
+[[bookmark-a]]Linux açık kaynaklı yazılımdır . Bu, kaynak kodu başkalarıyla açıkça paylaşıldığı sürece herkesin yazılımı istediği şekilde kullanabilir, kopyalayabilir, inceleyebilir ve değiştirebilir.
+
+[#bookmark-a]#Linux’un özgür ve açık kaynaklı bir yazılım olması gibi, bu da Linux dağıtımlarında bir artışa yol açtı.#
+
+anchor:bookmark-c[]Her durumda, kaynak kodu ücretsizdir, ancak bazı durumlarda, dağıtım ücretsiz değildir
+
+[[bookmark-d,last paragraph]]Bir Linux dağıtımı, Linux çekirdeği ve birlikte bir işletim sistemi oluşturan bir yazılım topluluğudur. 
+
+* Internal cross references
+
+<<Linux>> açık kaynaklı yazılımdır . Bu, kaynak kodu başkalarıyla açıkça paylaşıldığı sürece herkesin yazılımı istediği şekilde kullanabilir, kopyalayabilir, inceleyebilir ve değiştirebilir.
+
+Bir <<section-titles,Linux>> dağıtımı, Linux çekirdeği ve birlikte bir işletim sistemi oluşturan bir yazılım topluluğudur. 
+
+== Resim Örnekleri
+
+* Block
+
+.Endgame scene-1
+[#img-sunset]
+[caption="Figure 1:"]
+image::resim/endgame.png[Ironman,400,350]
+
+* Inline
+
+Arama yapabilmek için image:resim/arama.png[Call,50,50] a basın.
+
+* Inline image with positioning role
+
+image:resim/ay_evreleri.png[Ay Evreleri,200,200,role="right"]Ayın evreleri!
+
+* Embedded
+
+==== Rapor
+:data-uri: 
+
+== Video Örnekleri
+
+* Block
+
+//video::video/spiderman.mp4[width=240]
+
+* Embedded Youtube video
+
+video::USyHlvmukBk[Youtube]
+
+
+== Kaynak Kod Örnekleri
+
+* Inline (monospace only)
+
+`` public void Bilgigir(void isim,void soyad) {
+... 
+} ``
+
+* C++ kaynak kod 
+
+****
+._read_data.cpp_
+[source,c++]
+----
+#include <iostream>
+#include <pcl/io/pcd_io.h>
+#include <pcl/point_types.h>
+
+int main (int argc, char** argv)
+{
+  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
+
+  if (pcl::io::loadPCDFile<pcl::PointXYZ> ("read.pcd", *cloud) == -1) //* load the file
+  {
+    PCL_ERROR ("Couldn't read file test_pcd.pcd \n");
+    return (-1);
+  }
+  std::cout << "Loaded "
+            << cloud->width * cloud->height
+            << " data points from read.pcd with the following fields: "
+            << std::endl;
+  for (size_t i = 0; i < cloud->points.size (); ++i)
+    std::cout << "    " << cloud->points[i].x
+              << " "    << cloud->points[i].y
+              << " "    << cloud->points[i].z << std::endl;
+
+  return (0);
+}
+----
+****
+
+* linux bash script kod
+
+.cmake install
+****
+[source]
+----
+tar -xzvf cmake-$version.$build.tar.gz
+cd cmake-$version.$build/
+./bootstrap
+make -j4
+sudo make install
+----
+****
+
+== Tablolar Örneği
+
+.Ders Bilgileri
+|===
+|Ders Adı | Dersi Veren  
+
+|Yapay Zeka | Nevcihan Duru 
+|Bilişim Hukuku |Nevcihan Duru
+|===
+
+== Cross-ref Örneği
+
+* Inline anchors
+
+[[bookmark-a,last paragraph]]Listeler Örneği ile ilgili örnekleri görmek için tıklayınız. 
+
+* Internal cross references
+
+<<section-titles,Listeler Örneği>> ile ilgili örnekleri görmek için tıklayınız.
+
+
