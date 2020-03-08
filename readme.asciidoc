@@ -1,1 +1,10 @@
-== Yazılım Tasarım Kalıpları Notları
+= Yazılım Tasarım Kalıpları Notları
+
+== Odev-1
+
+Başlık, listeler, uyarılar, linkler, resimler, videolar, kaynak kodlar, tablolar ile ilgili örnekler yapıldı.
+
+
+
+
+
