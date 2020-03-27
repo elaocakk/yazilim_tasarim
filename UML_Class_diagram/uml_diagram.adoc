@@ -1,0 +1,59 @@
+== UML Class Diyagram 
+
+.PlantUML Diyagram-2
+[plantuml, diagram, png]     
+....
+class Evren
+class Cansızlar
+class Canlılar
+class Bitkiler
+class Hayvanlar
+class MikroskobikCanlılar
+class Mantarlar
+
+abstract class Hayvanlar {
+  virtual void nefesalir() const=0;
+}
+
+class İnsan {
+void nefesalir()
+}
+
+class Yaprak
+class Kök
+class Gövde
+class Oksijen 
+class Su
+class Böcekİlacı
+class Gübre
+class Pantolon
+class Tişört
+class Ayakkabı
+
+Evren -- Canlılar
+Evren -- Cansızlar
+
+Canlılar  <|-- Bitkiler
+Canlılar  <|-- Hayvanlar
+Canlılar  <|-- MikroskobikCanlılar
+Canlılar  <|-- Mantarlar
+Hayvanlar  <|.. İnsan
+
+Oksijen <.. Bitkiler
+Su <.. Bitkiler
+Oksijen <.. Hayvanlar
+
+Bitkiler ..> Böcekİlacı : kullanır
+Bitkiler ..> Gübre : kullanır
+
+Bitkiler  *-- "1..n" Yaprak : oluşur 
+Bitkiler  *-- "1" Kök  : oluşur 
+Bitkiler  *-- "1" Gövde  : oluşur 
+
+İnsan o-- "1..n" Pantolon : giyer
+İnsan o-- "1..n" Tişört : giyer
+İnsan o-- "1..n" Ayakkabı : giyer
+
+....
+
+
