@@ -4,6 +4,11 @@
 
 Başlık, listeler, uyarılar, linkler, resimler, videolar, kaynak kodlar, tablolar ile ilgili örnekler yapıldı.
 
+== Odev-2
+
+Association, aggregation, composition, generalization, realization, dependency ve use ilişki türlerini kullanarak örnek bir UML sınıf diyagramı oluşturuldu.
+
+
 
 
 
