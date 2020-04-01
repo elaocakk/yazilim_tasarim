@@ -1,0 +1,186 @@
+== UML Class Diyagram 
+
+.PlantUML Diyagram
+[plantuml, diagram, png]     
+....
+
+class Varlıklar  
+
+class CansızVarlıklar {
+- beslenememe()
+- solunum_yapamama()
+- büyüyememe()
+}
+
+interface Hareket {
++ pasif_hareket() 
++ aktif_hareket() 
+}
+
+class CanlıVarlıklar {
+- solunum()
+- beslenme()
+- boşaltım()
+- büyüme()
+- pasif_hareket()
+- aktif_hareket()
+}
+
+Hareket  <|.. CanlıVarlıklar
+
+Varlıklar -- CanlıVarlıklar
+Varlıklar -- CansızVarlıklar
+
+class MikroskobikCanlılar {
+- tek_hücreli_yapı
+
++ beslenme()
++ boşaltım()
++ aktif_hareket()
+
+}
+
+class Mantarlar {
+-hücre_çeperi
+
++ büyüme()
++ beslenme()
++ pasif_hareket()
+}
+
+CanlıVarlıklar  <|-- MikroskobikCanlılar
+CanlıVarlıklar  <|-- Mantarlar
+
+class Bitkiler{
+- hücre_ceperi
+- klorofil
+- kloroplast
+
+- fotosentez()
++ beslenme()
++ büyüme()
++ pasif_hareket()
+}
+
+CanlıVarlıklar  <|-- Bitkiler
+
+class Hayvanlar {
+- iskelet
+
++ büyüme()
++ beslenme()
++ solunum()
++ aktif_hareket()
+}
+
+CanlıVarlıklar  <|-- Hayvanlar
+
+class İnsan {
+- iskelet
+- yaş
+- boy
+- kilo
+- cinsiyet
+
++ büyüme()
++ beslenme()
++ solunum()
++ aktif_hareket()
+}
+
+Hayvanlar  <|.. İnsan
+
+class Yaprak {
+- yaprak_ayası
+- sap
+- boyut
+
++ fotosentez()
++ terleme()
++ enerji_üretme()
++ besin_üretme()
+}
+
+class Kök {
+- boyut
+
++ toprağa_bağlama()
++ su_çekmek()
++ su_iletmek()
+} 
+
+class Gövde {
+- uzunluk
+
++ su_iletme()
++ besin_iletme()
+}
+
+Bitkiler  *-- "1..n" Yaprak : oluşur 
+Bitkiler  *-- "1" Kök  : oluşur 
+Bitkiler  *-- "1" Gövde  : oluşur
+
+class Oksijen {
+- hacim
+}
+
+class Su{
+- hacim
+}
+
+Oksijen <.. Bitkiler
+Su <.. Bitkiler
+Oksijen <.. Hayvanlar
+
+class Böcekİlacı {
+- fiyat
+- yapım_tarihi
+
++ ilacı_sık()
+}
+
+class Gübre {
+- fiyat
+- ağırlık
+
++ dök()
+}
+
+Bitkiler ..> Böcekİlacı : <<uses>>
+Bitkiler ..> Gübre : <<uses>>
+
+class Pantolon {
+- marka
+- beden
+
++ giy()
++ çıkar()
++ temizle()
+}
+
+class Tişört{
+- beden
+- renk
+
++ giy()
++ çıkar()
++ temizle()
+}
+
+class Ayakkabı {
+- numara
+- marka
+- renk
+
++ giy()
++ çıkar()
++ temizle()
+}
+
+İnsan o-- "1..n" Pantolon : giyer
+İnsan o-- "1..n" Tişört : giyer
+İnsan o-- "1..n" Ayakkabı : giyer
+
+....
+
+
