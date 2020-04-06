@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/elaa/Desktop/OKUL/YTK/ödevler/odev3/c++_kodlar/factory.cpp
+iostream
+-
+stdio.h
+-
+

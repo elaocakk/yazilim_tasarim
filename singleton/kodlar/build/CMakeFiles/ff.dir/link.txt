@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/ff.dir/ff.cpp.o  -o ff 
