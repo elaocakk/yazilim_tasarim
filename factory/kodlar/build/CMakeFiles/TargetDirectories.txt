@@ -1,0 +1,3 @@
+/home/elaa/Desktop/OKUL/YTK/ödevler/odev3/c++_kodlar/build/CMakeFiles/rebuild_cache.dir
+/home/elaa/Desktop/OKUL/YTK/ödevler/odev3/c++_kodlar/build/CMakeFiles/factory.dir
+/home/elaa/Desktop/OKUL/YTK/ödevler/odev3/c++_kodlar/build/CMakeFiles/edit_cache.dir
