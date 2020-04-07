@@ -1,0 +1,192 @@
+== Thread-safe Singleton  Pattern Örneği
+
+.Thread-safe Singleton Pattern PlantUML
+[plantuml, thread-safe, png]      
+....
+class Canlılar {
+- {static} Canlilar *ornCanlilar 
+- string tur;
+- string isim;
+
++ void getIsim()
++ void setIsim()
++ void getTur()
++ void setTur()
+
++ {static} Canlilar *getCanlilarOrnek() 
+}
+....
+
+Kodlar :
+
+****
+.thread-safe.cpp
+[source,c++]
+----
+#include <iostream>       // std::cout
+#include <thread>         // std::thread
+#include <mutex>          // std::mutex
+
+using namespace std;
+
+class Canlilar {
+    private:
+        static Canlilar *ornCanlilar ;
+        string tur;
+        string isim;
+
+        Canlilar(){
+            tur="Hayvan";
+            isim="Kelebek";
+        };
+
+public:
+    static Canlilar *getCanlilarOrnek() {  // <1>
+       static mutex creation_mutex;
+
+        if (ornCanlilar == NULL)
+        {
+            creation_mutex.lock(); // <2>
+
+            if(ornCanlilar == NULL) {
+                ornCanlilar = new Canlilar();
+            }
+            creation_mutex.unlock();
+        }  
+        return ornCanlilar;
+    }
+
+    string getIsim(){
+            return this->isim;
+        }
+
+    void setIsim(string i){
+        isim=i;
+    }
+
+    string getTur() {
+        return this->tur;
+    }
+
+    void setTur(string t){
+        tur=t;
+        }
+
+};
+
+Canlilar* Canlilar::ornCanlilar = nullptr;
+
+int main()
+{
+	Canlilar *s1 = Canlilar::getCanlilarOrnek();  // <3>
+	Canlilar *s2 = Canlilar::getCanlilarOrnek();
+
+    cout << "s1 instance :" << endl;
+    cout << s1->getTur() << endl;
+    cout << s1->getIsim() << endl;
+
+    cout << "s2 instance :" << endl;
+    cout << s2->getTur() << endl;
+    cout << s2->getIsim() << endl;
+  
+
+    s1->setTur("Bitki");  // <4>
+    s1->setIsim("Menekşe");
+   
+    cout <<  endl;
+    cout << "s1 instance :" << endl;
+    cout << s1->getTur() << endl;
+    cout << s1->getIsim() << endl;
+   
+    cout << "s2 instance :" << endl;
+    cout << s2->getTur() << endl;
+    cout << s2->getIsim() << endl;
+
+	return 0;
+}
+----
+<1> instance oluşturma için kullanılan method
+<2> mutex kullanılarak birden fazla thread tarafından paylaşılan Canlilar nesnesi, güvenli bir şekilde gereksiz tekrar yüklemelerinden kurtuluyor
+<3> iki instance oluşturuldu
+<4> instance'lardan birinde değişiklik yapılarak çıktılara tekrar bakıldı
+*****
+
+****
+.singleton.cpp
+[source,c++]
+----
+#include <iostream>       // std::cout
+
+using namespace std;
+
+class Canlilar {
+private:
+      static Canlilar *ornek;
+      string tur;
+      string isim;
+
+    Canlilar(){
+        tur="Bitki";
+        isim="Papatya";
+    };
+    ~Canlilar(){   };
+    
+public:
+      static Canlilar *getCanlilarOrnek()
+      {
+            if (ornek == NULL) // if not yet instantiated
+            {
+                  ornek = new Canlilar();
+            }
+            return ornek;
+      }
+
+    string getIsim(){
+            return this->isim;
+        }
+
+    void setIsim(string i){
+        isim=i;
+    }
+
+    string getTur() {
+        return this->tur;
+    }
+
+    void setTur(string t){
+        tur=t;
+        }
+
+};
+
+Canlilar* Canlilar::ornek = NULL;
+
+int main()
+{
+    Canlilar *singl1 = Canlilar::getCanlilarOrnek();
+    Canlilar *singl2 = Canlilar::getCanlilarOrnek();
+
+    cout << "singl1 instance :" << endl;
+    cout << singl1->getTur() << endl;
+    cout << singl1->getIsim() << endl;
+
+    cout << "singl2 instance :" << endl;
+    cout << singl2->getTur() << endl;
+    cout << singl2->getIsim() << endl;
+    
+    singl1->setTur("Hayvan");
+    singl1->setIsim("Balık");
+   
+    cout <<  endl;
+    cout << "singl1 instance :" << endl;
+    cout << singl1->getTur() << endl;
+    cout << singl1->getIsim() << endl;
+   
+    cout << "singl2 instance :" << endl;
+    cout << singl2->getTur() << endl;
+    cout << singl2->getIsim() << endl;
+
+}
+----
+****
+
