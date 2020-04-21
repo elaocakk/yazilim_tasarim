@@ -13,6 +13,8 @@ Association, aggregation, composition, generalization, realization, dependency v
 Thread-safe singleton ve factory pattern kullanarak kod geliştirdi. Kodlar ile ilgili UML diyagramlar da oluşturuldu.
 
 
+== Odev-5
 
+Builder pattern kullanılarak kod geliştirdi. Kodlar ile ilgili UML diyagram da oluşturuldu.
 
 
