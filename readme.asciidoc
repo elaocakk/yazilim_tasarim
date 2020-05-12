@@ -13,5 +13,5 @@ Thread-safe singleton ve factory pattern kullanarak kod geliştirdi. Kodlar ile 
 Builder pattern kullanılarak kod geliştirdi. Kodlar ile ilgili UML diyagram da oluşturuldu.
 
 == Odev-6
-Iterator ve observer pattern kullanılarak kod geliştirdi. Kodlar ile ilgili UML diyagramlar da oluşturuldu.
+Iterator ve observer pattern thread kullanılarak kod geliştirdi. Kodlar ile ilgili UML diyagramlar da oluşturuldu.
 
