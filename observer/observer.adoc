@@ -1,0 +1,322 @@
+== Observer Pattern Örneği
+
+.Observer Pattern PlantUML
+[plantuml, observer , png]      
+....
+class Blogger {
+- List<Observer> observers 
+- String durum
+- String yaziBaslik
+- String yazi
+
++ String getDurum() 
++ void setDurum(String durum) 
++ String getYaziBaslik() 
++ void setYaziBaslik(String yaziBaslik) 
++ String getYazi() 
++ void setYazi(String yazi)
++ void observerEkle(Observer observer)
++ void observerSil(Observer observer)
++ void takipcilereHaberVer()
+}
+
+abstract class Observer {
+- Blogger blogger
++ {abstract} void guncellemeYap()
++ {abstract} void bildirimAl()
++ {abstract} void bildirimAlmayiBirak()
+}
+
+Blogger o-- Observer
+
+class Takipci1 {
++ Takipci1(Blogger b)
+}
+Takipci1 ..|> Observer
+
+class Takipci2 {
++ Takipci2(Blogger b)
+}
+Takipci2 ..|> Observer
+
+class Takipci3 {
++ Takipci3(Blogger b)
+}
+Takipci3 ..|> Observer
+
+class Takipci4 {
++ Takipci4(Blogger b)
+}
+Takipci4 ..|> Observer
+
+class Main {
++ {static} void main(String[] args)
+}
+Main -- Blogger
+
+....
+
+== Kodlar :
+
+****
+.Blogger.java
+[source,java]
+----
+package observer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Blogger {
+   private List<Observer> observers = new ArrayList<Observer>();
+   private String durum;
+   private String yaziBaslik;
+   private String yazi;
+
+   public String getDurum() {
+      return durum;
+   }
+   public void setDurum(String durum) {
+      this.durum = durum;
+   }
+   public String getYaziBaslik() {
+		return yaziBaslik;
+	}
+   public void setYaziBaslik(String yaziBaslik) {
+	   this.yaziBaslik = yaziBaslik;
+	}
+   public String getYazi() {
+		return yazi;
+	}
+   public void setYazi(String yazi) {
+		this.yazi = yazi;
+	} 
+   
+   public void observerEkle(Observer observer){
+	   if (observer == null) 
+		   return;
+	   observers.add(observer);		
+   }
+   public void observerSil(Observer observer){
+		   if (observer != null) {
+	   }
+		   observers.remove(observer);		  
+   }
+   public void takipcilereHaberVer(){
+	   for (Observer observer : observers) {
+          observer.guncellemeYap();
+         } 
+   }
+}
+----
+****
+
+****
+.Observer.java
+[source,java]
+----
+package observer;
+
+public abstract class Observer {
+	   protected Blogger blogger;
+	   public abstract void guncellemeYap();
+	   public abstract void bildirimAl();
+	   public abstract void bildirimAlmayiBirak();
+}
+----
+****
+
+****
+.Takipci1.java
+[source,java]
+----
+package observer;
+
+public class Takipci1 extends Observer{
+   public Takipci1(Blogger b){
+      this.blogger = b;
+   }
+   @Override
+   public void guncellemeYap() {
+	   System.out.println( "Takipci1'e güncelleme bildirimi gonderildi");
+	   System.out.println( " Durum: " + blogger.getDurum() ); 
+	   System.out.println( " Yazi basligi: " + blogger.getYaziBaslik() ); 
+	   System.out.println( " Yazi: " + blogger.getYazi() );
+   }
+   @Override
+   public void bildirimAl() {
+	   this.blogger.observerEkle(this);
+	   System.out.println( "Takipci1'e bildirim gönderilmesi islemi kabul edildi");
+   }
+   @Override
+   public void bildirimAlmayiBirak() {
+	   this.blogger.observerSil(this);
+	   System.out.println( "Takipci1'e bildirim gönderilmesi islemi iptal edildi");
+   }
+}
+----
+****
+
+****
+.Takipci2.java
+[source,java]
+----
+package observer;
+
+public class Takipci2 extends Observer{
+   public Takipci2(Blogger b){
+      this.blogger = b;
+   }
+   @Override
+   public void guncellemeYap() {
+	   System.out.println( "Takipci2'e güncelleme bildirimi gonderildi");
+	   System.out.println( " Durum: " + blogger.getDurum() ); 
+       System.out.println( " Yazi basligi: " + blogger.getYaziBaslik() ); 
+       System.out.println( " Yazi: " + blogger.getYazi() ); 
+   }
+   @Override
+   public void bildirimAl() {
+	   this.blogger.observerEkle(this);
+	   System.out.println( "Takipci2'e bildirim gönderilmesi islemi kabul edildi");
+   }
+   @Override
+   public void bildirimAlmayiBirak() {
+	   this.blogger.observerSil(this);
+	   System.out.println( "Takipci2'e bildirim gönderilmesi islemi iptal edildi");
+   }
+}
+----
+****
+
+****
+.Takipci3.java
+[source,java]
+----
+package observer;
+
+public class Takipci3 extends Observer{
+   public Takipci3(Blogger b){
+      this.blogger = b;
+   }
+   @Override
+   public void guncellemeYap() {
+	   System.out.println( "Takipci3'e güncelleme bildirimi gonderildi");
+	   System.out.println( " Durum: " + blogger.getDurum() ); 
+       System.out.println( " Yazi basligi: " + blogger.getYaziBaslik() ); 
+       System.out.println( " Yazi: " + blogger.getYazi() ); 
+   }
+   @Override
+   public void bildirimAl() {
+	   this.blogger.observerEkle(this);
+	   System.out.println( "Takipci3'e bildirim gönderilmesi islemi kabul edildi");
+   }
+   @Override
+   public void bildirimAlmayiBirak() {
+	   this.blogger.observerSil(this);
+	   System.out.println( "Takipci3'e bildirim gönderilmesi islemi iptal edildi");
+   }
+}
+----
+****
+
+****
+.Takipci4.java
+[source,java]
+----
+package observer;
+
+public class Takipci4 extends Observer{
+
+   public Takipci4(Blogger b){
+	      this.blogger = b;
+   }
+   @Override
+   public void guncellemeYap() {
+	  System.out.println( "Takipci4'e güncelleme bildirimi gonderildi");
+      System.out.println( " Durum: " + blogger.getDurum() ); 
+      System.out.println( " Yazi basligi: " + blogger.getYaziBaslik() ); 
+      System.out.println( " Yazi: " + blogger.getYazi() ); 
+   }
+   @Override
+   public void bildirimAl() {
+	   this.blogger.observerEkle(this);
+	   System.out.println( "Takipci4'e bildirim gönderilmesi islemi kabul edildi");
+   }
+   @Override
+   public void bildirimAlmayiBirak() {
+	   this.blogger.observerSil(this);
+	   System.out.println( "Takipci4'e bildirim gönderilmesi islemi iptal edildi");
+   }
+}
+----
+****
+
+****
+.Main.java
+[source,java]
+----
+package observer;
+
+public class Main extends Thread{
+
+   public static void main(String[] args) {
+	  Runnable th1=(Runnable) new Main();
+	  Runnable th2=(Runnable) new Main();
+	  Runnable th3=(Runnable) new Main();
+	  new Thread(th1).start();
+	  new Thread(th2).start();
+	  new Thread(th3).start();
+   }
+   
+   @Override
+    public void run() {
+        try {
+          System.out.println(this.getName());	
+          Blogger blog = new Blogger();
+          
+		  Takipci1 t1 = new Takipci1(blog);
+		  Takipci2 t2 = new Takipci2(blog);
+		  Takipci3 t3 = new Takipci3(blog);
+		  Takipci4 t4 = new Takipci4(blog);
+  		  t1.bildirimAl();
+  	      t2.bildirimAl();
+  	      t3.bildirimAl();
+  	      t4.bildirimAl();
+  	      
+  	      System.out.println("Blogta yeni bir yazi yayinlandi!!");	
+  	      
+  	      blog.setYaziBaslik("Simmons, Jordan ve LeBron arasındaki farkı açıkladı.");
+  	      blog.setYazi("Ünlü spor yorumcusu Bill Simmons, Chicago Bulls efsanesi Michael Jordan ve Los Angeles Lakers süperstarı LeBron James arasındaki farkları açıkladı.");
+  	      blog.setDurum("yeni yazi eklendi");
+  	      blog.takipcilereHaberVer();
+  
+  	      t2.bildirimAlmayiBirak();
+  	      t4.bildirimAlmayiBirak();
+  	      
+  	      System.out.println("Blogta yeni bir yazi yayinlandi!!");	
+  	      
+  	      blog.setYaziBaslik("Draft, Agustos sonu-Eylul başında olabilir!");
+  	      blog.setYazi("New York Post'tan Marc Berman, 2020 NBA Draftı'nın Agustos sonunda ya da Eylul basinda baslayabilcegini belirtti.  ");
+  	      blog.setDurum("yeni yazi eklendi");
+  	      blog.takipcilereHaberVer();
+  	      
+  	      t2.bildirimAl();
+  	      t3.bildirimAlmayiBirak();
+  	      
+  	      System.out.println("Blogta yeni bir yazi yayinlandi!!");	
+  	    
+  	      blog.setYaziBaslik("LeBron, Jerry West'in günümüz ortalamalarını tahmin etti");
+	      blog.setYazi("Los Angeles Lakers süperstarı LeBron James, NBA efsanesi Jerry West'in bugünün NBA'inde hala üretken bir oyuncu olacağına inandığını söyledi.");
+	      blog.setDurum("yeni yazi eklendi");
+	      blog.takipcilereHaberVer();
+         
+  	      Thread.sleep(500); 
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+    }
+}
+----
+****
+
+
