@@ -1,0 +1,187 @@
+== Iterator Pattern Örneği
+
+.Iterator Pattern PlantUML
+[plantuml, iterator , png]      
+....
+interface Container {
++ Iterator iterator()
+}
+
+class GezilecekSehirler {
++ ArrayList<String> sehirlistesi
++ void sehirlerEkle()
+}
+GezilecekSehirler ..|> Container
+
+interface Iterator {
++ boolean sonrakiVarMi()
++ boolean sehirlerGezildiMi()
++ Object sehir()
+}
+
+class GezilecekSehirIterator {
+- int index
+}
+GezilecekSehirIterator ..|> Iterator
+
+GezilecekSehirler ..> GezilecekSehirIterator : <<use>>
+GezilecekSehirler <-- GezilecekSehirIterator
+
+class Sehir {
++ String isim
+
++ Sehir() 	
++ Sehir(String isim) 
++ String getIsim() 
+}
+GezilecekSehirIterator -- Sehir
+
+
+class Main {
++ {static} void main(String[] args)
+}
+Main --> Container
+Main --> Iterator
+
+....
+
+
+== Kodlar :
+
+****
+.Iterator.java
+[source,java]
+----
+package iterator;
+
+public interface Iterator {
+	public boolean sonrakiVarMi();
+	public boolean sehirlerGezildiMi();
+	public Object sehir();
+}
+----
+****
+
+****
+.Container.java
+[source,java]
+----
+package iterator;
+
+public interface Container {
+	   public Iterator iterator();
+}
+----
+****
+
+****
+.Sehir.java
+[source,java]
+----
+package iterator;
+
+public class Sehir {
+	public String isim;
+	public Sehir() { }	
+	public Sehir(String isim) 
+    { 
+        this.isim = isim; 
+    } 
+	public String getIsim() 
+    { 
+        return isim; 
+    } 
+}
+
+----
+****
+
+****
+.GezilecekSehirler.java
+[source,java]
+----
+package iterator;
+
+import java.util.ArrayList; 
+
+public class GezilecekSehirler implements Container {
+   public ArrayList<String> sehirlistesi = new ArrayList<String>();
+	
+   @Override
+   public Iterator iterator() {
+      return new GezilecekSehirIterator();
+   }
+   public void sehirlerEkle() {
+	   sehirlistesi.add("Kocaeli");
+	   sehirlistesi.add("İstanbul");
+	   sehirlistesi.add("İzmir");
+	   sehirlistesi.add("Muğla");
+	   sehirlistesi.add("Antalya");
+	   sehirlistesi.add("Ankara");
+	   sehirlistesi.add("Bolu");
+	   sehirlistesi.add("Edirne");
+	   sehirlistesi.add("Kars");
+   }
+	   
+   private class GezilecekSehirIterator implements Iterator {
+	      private int index;
+	      @Override
+	      public boolean sonrakiVarMi() {
+	    	 if(index < sehirlistesi.size()){
+	            return true;
+	         }
+	         return false;
+	      }
+	      @Override
+	      public Object sehir() {
+	         if(this.sonrakiVarMi()){
+	        	String isim = sehirlistesi.get(index++);
+	        	Sehir sehir=new Sehir(isim);
+	        	
+	            return sehir;
+	         }
+	         return null;
+	      }
+		@Override
+		public boolean sehirlerGezildiMi() {
+			if(index < sehirlistesi.size()){
+				 return false;
+		     } else if (index == sehirlistesi.size() ) {    
+		    	 return true;
+		     }
+			 return false;
+		}		
+   }
+}
+----
+****
+
+****
+.Main.java
+[source,java]
+----
+package iterator;
+public class Main {
+	public static void main(String[] args) {
+		  
+	      GezilecekSehirler gezilecek = new GezilecekSehirler();
+	      gezilecek.sehirlerEkle();
+	        
+	      System.out.println("Gezinme islemi baslasin\n");
+	       
+	      Iterator iterator = gezilecek.iterator();
+	      
+	      while (iterator.sonrakiVarMi()) {
+	    	  Sehir s1 = (Sehir)iterator.sehir();
+ 	          System.out.println("Gezilen sehir adi : " + s1.getIsim());
+ 	          
+ 	          if(!iterator.sehirlerGezildiMi()) {
+ 	        	 System.out.println("Gezinme islemi tamamlanmadi\n");
+ 	          }else {
+ 	        	 System.out.println("Gezinme islemi tamamlandi\n");
+ 	          }
+	      }     
+	}
+}
+----
+****
