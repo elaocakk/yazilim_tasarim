@@ -1,20 +1,17 @@
 = Yazılım Tasarım Kalıpları Notları
 
 == Odev-1
-
 Başlık, listeler, uyarılar, linkler, resimler, videolar, kaynak kodlar, tablolar ile ilgili örnekler yapıldı.
 
 == Odev-2
-
 Association, aggregation, composition, generalization, realization, dependency ve use ilişki türlerini kullanarak örnek bir UML sınıf diyagramı oluşturuldu.
 
 == Odev-3
-
 Thread-safe singleton ve factory pattern kullanarak kod geliştirdi. Kodlar ile ilgili UML diyagramlar da oluşturuldu.
 
-
 == Odev-5
-
 Builder pattern kullanılarak kod geliştirdi. Kodlar ile ilgili UML diyagram da oluşturuldu.
 
+== Odev-6
+Iterator ve observer pattern kullanılarak kod geliştirdi. Kodlar ile ilgili UML diyagramlar da oluşturuldu.
 
