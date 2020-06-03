@@ -15,3 +15,5 @@ Builder pattern kullanılarak kod geliştirdi. Kodlar ile ilgili UML diyagram da
 == Odev-6
 Iterator ve observer pattern thread kullanılarak kod geliştirdi. Kodlar ile ilgili UML diyagramlar da oluşturuldu.
 
+== Odev-7
+Singleyon responsibility, CoR (Chain of Responsibility) ve adapter pattern kullanılarak kod geliştirdi. Kodlar ile ilgili UML diyagramlar ve patternler ile ilgili de Asciidoc dosyalar oluşturuldu.
